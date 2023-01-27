@@ -1,7 +1,7 @@
 <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="mt-3 pb-3 mb-3 d-flex">
-
+        {{-- Este es el Boton de desloguear el usuario...... --}}
         <form action="{{ route('logout') }}" method="POST">
             @csrf
             <div class="dropdown">
@@ -21,13 +21,7 @@
                 </div>
 
         </form>
-
-
-
-
     </div>
-
-
 </div>
 
 
@@ -59,6 +53,17 @@
                     </a>
                 </li>
             </ul>
+        </li>
+        <li class="nav-item ">
+            <a href="/users" class="nav-link">
+
+
+                <i class="nav-icon fas fa-users"></i>
+                <p>
+                    Usuarios
+                    {{-- <span class="right badge badge-danger">New</span> --}}
+                </p>
+            </a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link">

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rols;
+use App\Models\User;
+
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -13,7 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+
+        $users = User::all();
+        return view('admin_components.users.index')->with('users' , $users);
     }
 
     /**
@@ -23,7 +28,8 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = Rols::all();
+        return view('admin_components.users.create')->with('roles' , $roles);
     }
 
     /**
@@ -34,7 +40,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User();
+
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('pass');
+        $user->role_id = $request->get('role_id');
+
+        $user->save();
+
+        return redirect('/users');
     }
 
     /**
@@ -45,7 +60,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+       
+
+
     }
 
     /**
@@ -56,7 +73,12 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $roles = Rols::all();
+
+        return view('admin_components.users.edit')
+        ->with('roles' , $roles)
+        ->with('user' , $user);
     }
 
     /**
@@ -68,9 +90,18 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $user = User::find($id);
 
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->password = $request->get('pass');
+        $user->role_id = $request->get('role_id');
+
+        $user->save();
+
+        return redirect('/users');
+    }
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -79,6 +110,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/users');
+
     }
 }

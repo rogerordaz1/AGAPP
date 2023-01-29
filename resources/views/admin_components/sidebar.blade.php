@@ -30,8 +30,8 @@
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
              with font-awesome or any other icon font library -->
-        <li class="nav-item menu-close">
-            <a href="#" class="nav-link">
+        <li class="nav-item {{ 'user/profile' == request()->path() ? 'menu-open' : 'menu-close' }}">
+            <a href="#" class="nav-link {{ 'user/profile' == request()->path() ? 'active' : '' }}">
                 <i class="mr-2 fas fa-solid fa-clipboard"></i>
                 <p>
                     Ajustes de Cuenta
@@ -40,22 +40,26 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                    <a href="user/profile" class="nav-link active">
+                    <a href="user/profile" class="nav-link {{ 'user/profile' == request()->path() ? 'active' : '' }}
+                        
+                        ">
 
                         <i class="fas fa-solid fa-address-card"></i>
                         <p>Perfil de Usuario</p>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link ">
                         <i class="fas fa-key"></i>
                         <p>Recuperar Contrasena</p>
                     </a>
                 </li>
             </ul>
         </li>
+
+        {{-- Despues Cada vez que valla haciendo Algo con los links de la apk ir ajustando los li con los active................. --}}
         <li class="nav-item ">
-            <a href="/users" class="nav-link">
+            <a href="/users" class="nav-link {{ 'users' == request()->path() ? 'active' : '' }}">
 
 
                 <i class="nav-icon fas fa-users"></i>

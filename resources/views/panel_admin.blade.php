@@ -63,3 +63,12 @@
     <!-- ./wrapper -->
    
 @endsection
+
+
+@section('css')
+    @yield('css')
+@endsection
+
+@section('js')
+    @yield('js')
+@endsection

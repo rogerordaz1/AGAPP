@@ -3,7 +3,7 @@
 @section('contenido')
     <h1>Crear Usuario</h1>
 
-    <form class="pb-5" action="/users" method="post">
+    <form class="pb-5" action="/dashboard/users" method="post">
         @csrf
         <div class="form-group">
             <label for="name">Nombre</label>
@@ -37,6 +37,6 @@
         </div>
 
         <button type="submit" class="btn btn-success">Crear</button>
-        <a href="/users" type="submit" class="btn btn-secondary">Cancelar</a>
+        <a href="/dashboard/users" type="submit" class="btn btn-secondary">Cancelar</a>
     </form>
 @endsection

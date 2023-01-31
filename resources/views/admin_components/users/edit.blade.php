@@ -3,7 +3,7 @@
 @section('contenido')
     <h1>Editar Usuario</h1>
 
-    <form class="pb-5" action="/users/{{$user->id}}" method="post">
+    <form class="pb-5" action="/dashboard/users/{{$user->id}}" method="post">
         @csrf
         @method('PUT')
         <div class="form-group">
@@ -51,6 +51,6 @@
         </div>
 
         <button type="submit" class="btn btn-success">Editar</button>
-        <a href="/users" type="submit" class="btn btn-secondary">Cancelar</a>
+        <a href="/dashboard/users" type="submit" class="btn btn-secondary">Cancelar</a>
     </form>
 @endsection

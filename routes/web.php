@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DashBoardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('users', UserController::class)->middleware('auth');
+Route::resource('/dashboard/users', UserController::class)->middleware('auth');
 
 
 
@@ -28,7 +29,5 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('panel_admin');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashBoardController::class , 'index'])->name('dashboard');
 });

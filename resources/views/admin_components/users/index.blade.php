@@ -3,7 +3,7 @@
 @section('contenido')
     <h1>Listado de Usuarios</h1>
 
-    <a href="/users/create" type="button" class="btn btn-success mb-3">Crear Usuario</a>
+    <a href="/dashboard/users/create" type="button" class="btn btn-success mb-3">Crear Usuario</a>
 
     <table id="users" class="table pt-3">
         <thead>
@@ -30,7 +30,8 @@
                             @method('DELETE')
 
 
-                            <a href="/users/{{ $user->id }}/edit" type="button" class="btn btn-primary">Editar</a>
+                            <a href="/dashboard/users/{{ $user->id }}" type="button" class="btn btn-info">Show</a>
+                            <a href="/dashboard/users/{{ $user->id }}/edit" type="button" class="btn btn-primary">Editar</a>
 
                             <!-- Button trigger modal -->
                             <button type="button" class="btn btn-danger" data-toggle="modal"

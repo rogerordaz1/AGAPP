@@ -4,7 +4,7 @@
 
 <div class="row">
 
-    <x-count-card count="10" text="Cantidad de Clientes" color="info"/>
+    <x-count-card :count=$usersCount text="Cantidad de Clientes" color="info"/>
     <x-count-card count="13" text="Cantidad de Agentes" color="success"/>
     
     <!-- ./col -->
@@ -12,7 +12,7 @@
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>44</h3>
+          <h3> {{ $usersCount }}</h3>
 
           <p>Cantidad de Oficinas Comerciales</p>
         </div>

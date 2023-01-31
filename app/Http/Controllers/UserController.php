@@ -18,7 +18,15 @@ class UserController extends Controller
     {
 
         $users = User::all();
-        return view('admin_components.users.index')->with('users' , $users);
+        $usersCount = User::all()->count();
+
+        return view(
+            'admin_components.users.index',
+            [
+                'users' => $users,
+                'usersCount' =>  $usersCount
+            ]
+        );
     }
 
     /**
@@ -29,7 +37,14 @@ class UserController extends Controller
     public function create()
     {
         $roles = Rols::all();
-        return view('admin_components.users.create')->with('roles' , $roles);
+        $usersCount = User::all()->count();
+        return view(
+            'admin_components.users.create',
+            [
+                'roles' => $roles,
+                'usersCount' =>  $usersCount
+            ]
+        );
     }
 
     /**
@@ -49,7 +64,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect('/users');
+        return redirect('/dashboard/users');
     }
 
     /**
@@ -60,8 +75,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       
+        $user = User::find($id);
+        $usersCount = User::all()->count();
+        return view(
+            'admin_components.users.show',
 
+            [
+                'user' => $user,
+                
+                'usersCount' =>  $usersCount
+            ]
+        );
 
     }
 
@@ -75,10 +99,16 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $roles = Rols::all();
+        $usersCount = User::all()->count();
+        return view(
+            'admin_components.users.edit',
 
-        return view('admin_components.users.edit')
-        ->with('roles' , $roles)
-        ->with('user' , $user);
+            [
+                'user' => $user,
+                'roles' => $roles,
+                'usersCount' =>  $usersCount
+            ]
+        );
     }
 
     /**
@@ -90,18 +120,27 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        // $user = User::find($id);
 
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
-        $user->password = $request->get('pass');
-        $user->role_id = $request->get('role_id');
+        // $user->name = $request->get('name');
+        // $user->email = $request->get('email');
+        // $user->password = $request->get('pass');
+        // $user->role_id = $request->get('role_id');
 
-        $user->save();
+        // $user->save();
 
-        return redirect('/users');
+        $user = User::where('id', $id)->update(
+            [
+                'name' => $request->get('name'),
+                'email' => $request->get('email'),
+                'password' => $request->get('pass'),
+                'role_id' => $request->get('role_id')
+            ]
+        );
+
+        return redirect('/dashboard/users');
     }
-    
+
     /**
      * Remove the specified resource from storage.
      *
@@ -112,7 +151,6 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect('/users');
-
+        return redirect('/dashboard/users');
     }
 }

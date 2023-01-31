@@ -33,7 +33,7 @@
             <!-- Main content -->
             <div class="content">
                 <div class="container-fluid">
-                    @include('admin_components.cant_cards_row')
+                    <x-card-count-row/>
 
                     <x-app-layout>
                         <div>
